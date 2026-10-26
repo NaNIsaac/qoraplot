@@ -1,0 +1,50 @@
+[project]
+name = "qoraplot"
+version = "0.1.0"
+description = "Origin-like publication style for matplotlib, with colour-vision-deficiency-safe cycles"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE*", "src/qoraplot/fonts/OFL.txt"]
+authors = [{ name = "Isaac Yong", email = "isaacyong@naver.com" }]
+requires-python = ">=3.12"
+keywords = ["matplotlib", "style", "publication", "figures", "color blindness"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: Matplotlib",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Visualization",
+]
+dependencies = [
+    "cvdkit>=0.1.0",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/NaNIsaac/qoraplot"
+Repository = "https://github.com/NaNIsaac/qoraplot"
+Issues = "https://github.com/NaNIsaac/qoraplot/issues"
+
+[build-system]
+requires = ["uv_build>=0.12.7,<0.13"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = ["pytest>=9.1.1"]
+
+# Until cvdkit is on PyPI
+[tool.uv.sources]
+cvdkit = { git = "https://github.com/NaNIsaac/cvdkit", branch = "main" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+extend-select = ["I", "UP", "B"]
