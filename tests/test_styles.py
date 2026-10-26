@@ -15,16 +15,16 @@ BASELINE = Path(__file__).with_name("baseline")
 @pytest.mark.parametrize("context", qoraplot.CONTEXTS)
 @pytest.mark.parametrize("variant", qoraplot.VARIANTS)
 def test_every_key_is_a_valid_rcparam(context, variant):
-    params = qoraplot.rc(context, variant)
+    params = qoraplot.rc(variant, context)
     assert set(params) <= set(mpl.rcParams)
-    with qoraplot.style(context, variant):
+    with qoraplot.style(variant, context):
         for key, value in params.items():
             if key != "axes.prop_cycle":
                 assert mpl.rcParams[key] == mpl.rcParams.validate[key](value), key
 
 
 def test_box_is_closed_with_ticks_inside_on_four_sides():
-    p = qoraplot.rc("paper", "box")
+    p = qoraplot.rc("box")
     assert p["axes.spines.top"] and p["axes.spines.right"]
     assert p["xtick.top"] and p["ytick.right"]
     assert p["xtick.direction"] == p["ytick.direction"] == "in"
@@ -34,7 +34,7 @@ def test_box_is_closed_with_ticks_inside_on_four_sides():
 
 
 def test_house_is_an_open_frame_in_plex():
-    p = qoraplot.rc("paper", "house")
+    p = qoraplot.rc("house")
     assert not p["axes.spines.top"] and not p["axes.spines.right"]
     assert p["axes.grid"]
     assert p["font.sans-serif"][0] == "IBM Plex Sans"
@@ -43,35 +43,37 @@ def test_house_is_an_open_frame_in_plex():
 
 
 def test_sizes_grow_from_paper_to_poster():
-    paper, slide, poster = (qoraplot.rc(c)["font.size"] for c in ("paper", "slide", "poster"))
+    paper, slide, poster = (
+        qoraplot.rc("box", c)["font.size"] for c in ("paper", "slide", "poster")
+    )
     assert paper < slide < poster
 
 
 def test_cycle_is_cvd_safe_with_markers_and_dashes():
-    cycle = list(qoraplot.rc()["axes.prop_cycle"])
+    cycle = list(qoraplot.rc("box")["axes.prop_cycle"])
     assert [c["color"] for c in cycle] == list(cvdkit.pick(8).colors)
     assert len({(c["marker"], str(c["linestyle"])) for c in cycle}) == len(cycle)
 
 
 def test_style_restores_rcparams():
     before = dict(mpl.rcParams)
-    with qoraplot.style("poster", "house"):
+    with qoraplot.style("house", "poster"):
         assert mpl.rcParams["font.size"] == 26
     assert dict(mpl.rcParams) == before
 
 
 def test_use_and_bad_arguments():
     with mpl.rc_context():
-        qoraplot.use("slide", "box")
+        qoraplot.use("box", "slide")
         assert mpl.rcParams["font.size"] == 16
     with pytest.raises(ValueError):
-        qoraplot.rc("talk")
+        qoraplot.rc("box", "talk")
     with pytest.raises(ValueError):
-        qoraplot.rc("paper", "plain")
+        qoraplot.rc("plain")
 
 
 def test_figure_sizes():
-    with qoraplot.style():
+    with qoraplot.style("box"):
         fig, _ = qoraplot.figure("single", aspect=0.5)
         assert tuple(fig.get_size_inches()) == pytest.approx((3.5, 1.75))
         fig, axes = qoraplot.figure(5.0, ncols=2)
@@ -81,7 +83,7 @@ def test_figure_sizes():
 
 def _render(variant: str) -> np.ndarray:
     # Tick labels and text off, so the render does not depend on installed fonts
-    with qoraplot.style("paper", variant):
+    with qoraplot.style(variant):
         fig, ax = qoraplot.figure("single", dpi=100)
         x = np.linspace(0, 1, 6)
         for k in range(3):

@@ -17,15 +17,15 @@ WIDTHS = {"single": 3.5, "double": 7.2}
 __all__ = ["CONTEXTS", "VARIANTS", "WIDTHS", "figure", "panel_label", "rc", "style", "use"]
 
 
-def use(context: Context = "paper", variant: Variant = "box") -> None:
+def use(variant: Variant, context: Context = "paper") -> None:
     """Apply the style to every later figure."""
-    mpl.rcParams.update(rc(context, variant))
+    mpl.rcParams.update(rc(variant, context))
 
 
 @contextmanager
-def style(context: Context = "paper", variant: Variant = "box") -> Iterator[None]:
+def style(variant: Variant, context: Context = "paper") -> Iterator[None]:
     """Apply the style inside a `with` block only."""
-    with mpl.rc_context(rc(context, variant)):
+    with mpl.rc_context(rc(variant, context)):
         yield
 
 

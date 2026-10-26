@@ -2,7 +2,7 @@
 
 [English](README.md) | [한국어](README.ko.md)
 
-An Origin-like publication style for matplotlib: ticks inside on all four sides with minor ticks,
+An Origin-like publication style for matplotlib (`box`): ticks inside on all four sides with minor ticks,
 a closed frame, no grid and a sans-serif face, sized for journal columns, slides and posters. The
 colour, marker and dash cycle comes from [cvdkit](https://github.com/NaNIsaac/cvdkit), so series
 stay apart with colour-vision deficiency.
@@ -45,7 +45,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import qoraplot
 
-qoraplot.use("paper")  # or "slide", "poster"; applies to later figures
+qoraplot.use("box", "paper")  # variant "box" or "house"; context "paper", "slide" or "poster"
 
 fig, ax = qoraplot.figure("single")  # 3.5 in wide; "double" is 7.2 in
 x = np.linspace(0, 10, 30)
@@ -56,7 +56,7 @@ ax.legend()
 qoraplot.panel_label(ax, "a")
 fig.savefig("figure.pdf")  # 300 dpi for paper, TrueType fonts embedded
 
-with qoraplot.style("poster", "house"):  # only inside the block; save inside it too
+with qoraplot.style("house", "poster"):  # only inside the block; save inside it too
     fig, ax = qoraplot.figure(14.4, aspect=0.5)
     ax.plot(x, np.sin(x))
     fig.savefig("poster_panel.png")
@@ -66,7 +66,8 @@ Fonts are looked up when a figure is drawn, so with `style(...)` call `savefig` 
 
 ## Variants
 
-Two variants on the same data. The default is `box` until one is chosen.
+Two variants on the same data. There is no default yet: name the variant in every call until one
+is chosen.
 
 - `box`: closed frame, ticks inside on all four sides, minor ticks, no grid, Arial or Helvetica
   (falling back to Liberation Sans, then DejaVu Sans), black ink.

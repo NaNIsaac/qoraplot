@@ -32,7 +32,7 @@ def draw(variant: str) -> np.ndarray:
     """Save the figure for `variant` and return its deuteranopia simulation."""
     t, curves, x, y, err = data()
     # Fonts are looked up when the figure is drawn, so saving stays inside the style block
-    with qoraplot.style("paper", variant):
+    with qoraplot.style(variant, "paper"):
         fig, (a, b) = qoraplot.figure("double", aspect=0.36, ncols=2)
         for tau, c in curves.items():
             a.plot(t[::3], c[::3], label=rf"$\tau$ = {tau:g} ns")

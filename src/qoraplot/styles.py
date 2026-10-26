@@ -42,7 +42,7 @@ def _add_fonts() -> None:
     _fonts_added = True
 
 
-def rc(context: Context = "paper", variant: Variant = "box") -> dict:
+def rc(variant: Variant, context: Context = "paper") -> dict:
     if context not in _SCALE:
         raise ValueError(f"context must be one of {CONTEXTS}, not {context!r}")
     if variant not in VARIANTS:

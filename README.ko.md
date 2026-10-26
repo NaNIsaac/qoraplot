@@ -44,7 +44,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import qoraplot
 
-qoraplot.use("paper")  # 또는 "slide", "poster"; 이후 그림에 적용
+qoraplot.use("box", "paper")  # 변형 "box" 또는 "house"; 맥락 "paper", "slide", "poster"
 
 fig, ax = qoraplot.figure("single")  # 폭 3.5 in; "double"은 7.2 in
 x = np.linspace(0, 10, 30)
@@ -55,7 +55,7 @@ ax.legend()
 qoraplot.panel_label(ax, "a")
 fig.savefig("figure.pdf")  # paper는 300 dpi, TrueType 글꼴 포함
 
-with qoraplot.style("poster", "house"):  # 블록 안에서만 적용; 저장도 블록 안에서
+with qoraplot.style("house", "poster"):  # 블록 안에서만 적용; 저장도 블록 안에서
     fig, ax = qoraplot.figure(14.4, aspect=0.5)
     ax.plot(x, np.sin(x))
     fig.savefig("poster_panel.png")
@@ -65,7 +65,7 @@ with qoraplot.style("poster", "house"):  # 블록 안에서만 적용; 저장도
 
 ## 변형
 
-같은 데이터로 그린 두 변형입니다. 하나를 고르기 전까지 기본값은 `box`입니다.
+같은 데이터로 그린 두 변형입니다. 아직 기본값이 없으므로 하나를 고르기 전까지는 호출마다 변형을 지정합니다.
 
 - `box`: 닫힌 테두리, 네 면 안쪽 눈금, 보조 눈금, 격자 없음, Arial 또는 Helvetica(없으면 Liberation Sans,
   그다음 DejaVu Sans), 검은 선.
