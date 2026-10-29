@@ -94,7 +94,7 @@ wheels = [
 [[package]]
 name = "cvdkit"
 version = "0.1.0"
-source = { git = "https://github.com/NaNIsaac/cvdkit?branch=main#7df0d21cd4363c57e12cdf43238ccc2b7b28048e" }
+source = { git = "https://github.com/NaNIsaac/cvdkit?rev=8c3566008e861e70e97b6dec62071d3ddc3ac453#8c3566008e861e70e97b6dec62071d3ddc3ac453" }
 dependencies = [
     { name = "matplotlib" },
     { name = "numpy" },
@@ -577,7 +577,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "cvdkit", git = "https://github.com/NaNIsaac/cvdkit?branch=main" },
+    { name = "cvdkit", git = "https://github.com/NaNIsaac/cvdkit?rev=8c3566008e861e70e97b6dec62071d3ddc3ac453" },
     { name = "matplotlib", specifier = ">=3.11.2" },
     { name = "numpy", specifier = ">=2.5.4" },
 ]
