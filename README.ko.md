@@ -8,6 +8,14 @@ matplotlib용 Origin 스타일 출판용 그림 스타일입니다. 네 면 모�
 
 qoraplot은 OriginLab과 관계가 없으며, "Origin 스타일"은 모양을 설명하는 말일 뿐입니다.
 
+### 스타일 미리보기
+
+| `box` — 논문용 프레임 | `house` — 간결한 레이아웃 |
+|---|---|
+| ![Origin 스타일 box](docs/variant_box.png) | ![House 스타일](docs/variant_house.png) |
+
+두 스타일 모두 색·마커·점선 순환에 [cvdkit](https://github.com/NaNIsaac/cvdkit)을 사용합니다. [녹색각 이상 시뮬레이션 비교](docs/variants_deutan.png)도 확인할 수 있습니다.
+
 ## 설치
 
 Python 3.12 이상이 필요합니다. PyPI에 첫 릴리스가 올라가기 전까지는 이 저장소를 clone한 폴더에서
