@@ -9,6 +9,14 @@ stay apart with colour-vision deficiency.
 
 qoraplot is not affiliated with OriginLab; "Origin-like" only describes the look.
 
+### Style preview
+
+| `box` — publication frame | `house` — lighter layout |
+|---|---|
+| ![Origin-like box style](docs/variant_box.png) | ![House style](docs/variant_house.png) |
+
+Both variants use [cvdkit](https://github.com/NaNIsaac/cvdkit) for color, marker and dash cycles. See the [deuteranopia comparison](docs/variants_deutan.png).
+
 ## Install
 
 qoraplot needs Python 3.12 or newer. Until the first release is on PyPI, install it from a clone of
