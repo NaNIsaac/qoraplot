@@ -38,7 +38,7 @@ dev = ["pytest>=9.1.1"]
 
 # Until cvdkit is on PyPI
 [tool.uv.sources]
-cvdkit = { git = "https://github.com/NaNIsaac/cvdkit", branch = "main" }
+cvdkit = { git = "https://github.com/NaNIsaac/cvdkit", rev = "dee16d668ab15256d91c9acdf87128882724eb14" }
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
